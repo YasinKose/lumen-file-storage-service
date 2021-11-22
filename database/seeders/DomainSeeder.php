@@ -11,8 +11,8 @@ class DomainSeeder extends Seeder
     {
         Domain::create([
             'name' => 'Test',
-            'apiKey' => 'asdf',
-            'domainIp' => '1291658546354'
+            'api_key' => 'asdf',
+            'domain_ip' => '1291658546354'
         ]);
     }
 }
