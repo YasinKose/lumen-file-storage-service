@@ -11,8 +11,8 @@ class CreateDomainsTable extends Migration
         Schema::create('domains', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string("name");
-            $table->string("apiKey");
-            $table->string("domainIp");
+            $table->string("api_key");
+            $table->string("domain_ip");
             $table->timestamps();
         });
     }
