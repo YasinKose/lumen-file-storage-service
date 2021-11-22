@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Support\Facades\Auth;
-
-class CreatesTemporaryUrlRequest extends FormRequest
+class StoreFileRequest extends FormRequest
 {
     /**
      * @return string
@@ -31,8 +29,9 @@ class CreatesTemporaryUrlRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'apiKey' => ['required', 'string', 'exists:domains,apiKey'],
-            'datas'  => ['required', 'array',]
+            'apiKey' => ['required', 'string', 'exists:domains,api_key'],
+            'file'   => ['required', 'array'],
+            'file.*' => ['required', 'file']
         ];
     }
 
@@ -43,7 +42,9 @@ class CreatesTemporaryUrlRequest extends FormRequest
     {
         return [
             'apiKey' => 'API Key',
-            'datas'  => 'Dosya Verileri'
+            'file'   => 'Dosyalar',
+            'file.*' => 'Dosya'
         ];
     }
+
 }
