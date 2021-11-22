@@ -10,11 +10,12 @@ use Illuminate\Support\Str;
 class File extends Model
 {
     protected $fillable = [
-        'originalName',
-        'mimeType',
+        'original_name',
+        'mime_type',
         'extension',
-        'filePath',
-        'domainId'
+        'file_path',
+        'domain_id',
+        'slug'
     ];
 
     /**
