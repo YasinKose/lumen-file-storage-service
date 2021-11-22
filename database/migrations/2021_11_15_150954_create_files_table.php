@@ -10,12 +10,12 @@ class CreateFilesTable extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('originalName');
-            $table->string('mimeType');
+            $table->string('original_name');
+            $table->string('mime_type');
             $table->string('extension');
-            $table->string('filePath');
-            $table->foreignId('domainId')->constrained("domains");
-            $table->boolean('is_private')->default(0);
+            $table->string('file_path');
+            $table->foreignId('domain_id')->constrained("domains");
+            $table->string('slug');
             $table->timestamps();
         });
     }
