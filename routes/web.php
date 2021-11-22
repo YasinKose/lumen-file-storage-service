@@ -13,19 +13,14 @@
 |
 */
 
-$router->post("upload-file", [
-    'as' => 'upload-file', 'uses' => 'FileUploadController@uploadFile',
-]);
-$router->post("create-temporary/{id}", [
-    'as' => 'create-temporary', 'uses' => 'TemporaryUrlController@create'
-]);
-$router->post("create-temporaries", [
-    'as' => 'create-temporaries', 'uses' => 'TemporaryUrlController@creates'
-]);
+$router->group(['prefix' => 'file'], function () use ($router) {
+    $router->post("upload", [
+        'as' => 'upload',
+        'uses' => 'FileController@store',
+    ]);
 
-$router->get("file/{slug}", [
-    'as' => 'show-file', 'uses' => 'TemporaryUrlController@show'
-]);
-$router->get("file-download/{slug}", [
-    'as' => 'download-file', 'uses' => 'TemporaryUrlController@download'
-]);
+    $router->get("/{slug}", [
+        'as' => 'show',
+        'uses' => 'FileController@show',
+    ]);
+});
