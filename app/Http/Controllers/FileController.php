@@ -33,7 +33,8 @@ class FileController extends Controller
 
             $urls[] = [
                 'original_name' => $file->original_name,
-                'slug'          => $file->slug
+                'slug'          => $file->slug,
+                'url'           => route('show', ['slug' => $file->slug])
             ];
         }
 
