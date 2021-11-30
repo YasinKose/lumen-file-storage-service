@@ -1,29 +1,29 @@
-# Lumen PHP Framework (Starter Template)
+# Lumen File Storage Service
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/YasinKose/lumen-starter-template/graphs/commit-activity)
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/YasinKose/lumen-starter-template/)
 
-**This repository contains JWT Auth, Form Request, Route List packages. A ready auth system comes with the project.**
+With this service, you can store your files on a remote server and track them securely.
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We
-believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain
-out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction,
-queueing, and caching.
+## Contributors ✨
 
-## Official Documentation
+Thanks goes to these people:
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
-
-## Contributing
-
-Thank you for considering contributing to Lumen! The contribution guide can be found in
-the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All
-security vulnerabilities will be promptly addressed.
-
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<!-- ALL-CONTRIBUTORS-LIST:START -->
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/yoktav">
+        <img src="https://avatars.githubusercontent.com/u/58294158?v=3?s=100" width="100px;" alt="Yasin Köse" /><br />
+        <sub><b>Yasin Köse</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/SisyphosGK">
+        <img src="https://avatars.githubusercontent.com/u/32842660?v=3?s=100" width="100px;" alt="Mehmet Nurullah Sağlam" /><br />
+        <sub><b>Mehmet Nurullah Sağlam</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
+<!-- ALL-CONTRIBUTORS-LIST:END -->
