@@ -29,4 +29,12 @@ class File extends Model
         'domain_id',
         'slug'
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function domain(): BelongsTo
+    {
+        return $this->belongsTo(Domain::class);
+    }
 }
