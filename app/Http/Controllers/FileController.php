@@ -6,7 +6,7 @@ use App\Http\Requests\StoreFileRequest;
 use App\Models\Domain;
 use App\Models\File;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Str;
+use Illuminate\Http\UploadedFile;
 use Respond;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
@@ -18,41 +18,42 @@ class FileController extends Controller
      */
     public function store(StoreFileRequest $request): JsonResponse
     {
-        $domain = Domain::where('api_key', $request->input('apiKey'))->first();
+        $domain = Domain::where('api_key', $request->input('api_key'))->first();
 
         if ($domain === null) {
             return Respond::error("Geçersiz sunucu bilgisi!");
         }
 
-        $urls = [];
-        foreach ($request->file('file') as $index => $file) {
+        $files = collect();
+        collect($request->file('files'))->each(function ($file) use ($files, $request, $domain) {
+            /** @var UploadedFile $file */
+            $files->add(
+                File::create([
+                    'original_name' => $file->getClientOriginalName(),
+                    'mime_type' => $file->getClientMimeType(),
+                    'extension' => $file->getClientOriginalExtension(),
+                    'file_path' => $file->storeAs(
+                        $request->input("path", "docs"),
+                        $file->hashName()
+                    ),
+                    'domain_id' => $domain->id
+                ])
+            );
+        });
 
-            $file = File::create([
-                'original_name' => $file->getClientOriginalName(),
-                'mime_type' => $file->getClientMimeType(),
-                'extension' => $file->getClientOriginalExtension(),
-                'file_path' => $file->move('docs', $file->hashName()),
-                'domain_id' => $domain->id,
-                'slug' => Str::random(10)
-            ]);
-
-            $urls[] = [
-                'original_name' => $file->original_name,
-                'slug'          => $file->slug,
-                'url'           => route('show', ['slug' => $file->slug])
-            ];
-        }
-
-        return $this->respondOk('Dosyalar başarıyla yüklendi', $urls);
+        return Respond::ok(
+            'Dosyalar başarıyla yüklendi',
+            $files->all()
+        );
     }
 
     /**
-     * @param $slug
+     * @param $uuid
      * @return BinaryFileResponse
      */
-    public function show($slug): BinaryFileResponse
+    public function show($uuid): BinaryFileResponse
     {
-        $file = File::where('slug', $slug)->firstOrFail();
+        $file = File::where('uuid', $uuid)->firstOrFail();
 
         return new BinaryFileResponse($file->file_path, 200);
     }
