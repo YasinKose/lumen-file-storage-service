@@ -95,9 +95,6 @@ $app->instance('path.public', app()->basePath() . DIRECTORY_SEPARATOR . 'public'
 // $app->register(App\Providers\AppServiceProvider::class);
 //$app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
-
-$app->register(YasinKose\ApiResponder\ServiceProvider::class);
-class_alias(YasinKose\ApiResponder\Facades\ApiResponder::class, "Respond");
 /*
 |--------------------------------------------------------------------------
 | Providers of the packages we have installed
@@ -105,6 +102,11 @@ class_alias(YasinKose\ApiResponder\Facades\ApiResponder::class, "Respond");
 */
 $app->register(Urameshibr\Providers\FormRequestServiceProvider::class);
 $app->register(Thedevsaddam\LumenRouteList\LumenRouteListServiceProvider::class);
+
+$app->register(YasinKose\ApiResponder\ServiceProvider::class);
+class_alias(YasinKose\ApiResponder\Facades\ApiResponder::class, "Respond");
+
+$app->register(Dyrynda\Database\LaravelEfficientUuidServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
