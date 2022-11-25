@@ -10,7 +10,9 @@ class CreateFilesTable extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->efficientUuid('uuid')->index();
+            $table
+                ->efficientUuid('uuid')
+                ->index();
             $table
                 ->foreignId('domain_id')
                 ->constrained("domains");
