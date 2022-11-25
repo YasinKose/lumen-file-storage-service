@@ -26,8 +26,7 @@ class File extends Model
         'mime_type',
         'extension',
         'file_path',
-        'domain_id',
-        'slug'
+        'domain_id'
     ];
 
     /**
