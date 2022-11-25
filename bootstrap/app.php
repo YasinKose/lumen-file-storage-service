@@ -23,8 +23,8 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
- $app->withFacades();
- $app->withEloquent();
+$app->withFacades();
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -96,6 +96,8 @@ $app->instance('path.public', app()->basePath() . DIRECTORY_SEPARATOR . 'public'
 //$app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
+$app->register(YasinKose\ApiResponder\ServiceProvider::class);
+class_alias(YasinKose\ApiResponder\Facades\ApiResponder::class, "Respond");
 /*
 |--------------------------------------------------------------------------
 | Providers of the packages we have installed
