@@ -7,6 +7,7 @@ use App\Models\Domain;
 use App\Models\File;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
+use Respond;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class FileController extends Controller
@@ -17,7 +18,11 @@ class FileController extends Controller
      */
     public function store(StoreFileRequest $request): JsonResponse
     {
-        $apiKey = Domain::select('id')->where('api_key', $request->input('apiKey'))->first();
+        $domain = Domain::where('api_key', $request->input('apiKey'))->first();
+
+        if ($domain === null) {
+            return Respond::error("Geçersiz sunucu bilgisi!");
+        }
 
         $urls = [];
         foreach ($request->file('file') as $index => $file) {
@@ -27,8 +32,8 @@ class FileController extends Controller
                 'mime_type' => $file->getClientMimeType(),
                 'extension' => $file->getClientOriginalExtension(),
                 'file_path' => $file->move('docs', $file->hashName()),
-                'domain_id' => $apiKey->id,
-                'slug'      => Str::random(10)
+                'domain_id' => $domain->id,
+                'slug' => Str::random(10)
             ]);
 
             $urls[] = [
