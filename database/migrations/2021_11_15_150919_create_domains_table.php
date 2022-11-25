@@ -12,7 +12,9 @@ class CreateDomainsTable extends Migration
             $table->bigIncrements('id');
             $table->string("name");
             $table->string("api_key");
-            $table->string("domain_ip");
+            $table
+                ->string("domain_ip")
+                ->nullable();
             $table->timestamps();
         });
     }
