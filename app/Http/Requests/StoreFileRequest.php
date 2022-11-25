@@ -9,7 +9,7 @@ class StoreFileRequest extends FormRequest
      */
     public function responseMessage(): string
     {
-        return "Validation error!";
+        return "Dosya yüklenemedi!";
     }
 
     /**
@@ -29,9 +29,18 @@ class StoreFileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'apiKey' => ['required', 'string', 'exists:domains,api_key'],
-            'file'   => ['required', 'array'],
-            'file.*' => ['required', 'file']
+            'api_key' => [
+                'required',
+                'string'
+            ],
+            'file' => [
+                'required',
+                'array'
+            ],
+            'file.*' => [
+                'required',
+                'file'
+            ]
         ];
     }
 
@@ -41,8 +50,8 @@ class StoreFileRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'apiKey' => 'API Key',
-            'file'   => 'Dosyalar',
+            'apiKey' => 'Api anahtarı',
+            'file' => 'Dosyalar',
             'file.*' => 'Dosya'
         ];
     }
