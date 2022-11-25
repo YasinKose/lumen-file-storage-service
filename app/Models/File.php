@@ -2,13 +2,25 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
+use Dyrynda\Database\Casts\EfficientUuid;
+use Dyrynda\Database\Support\GeneratesUuid;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class File extends Model
 {
+    use GeneratesUuid;
+
+    /**
+     * @var string[]
+     */
+    protected $casts = [
+        'uuid' => EfficientUuid::class,
+    ];
+
+    /**
+     * @var string[]
+     */
     protected $fillable = [
         'original_name',
         'mime_type',
