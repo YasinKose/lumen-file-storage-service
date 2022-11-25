@@ -33,11 +33,11 @@ class StoreFileRequest extends FormRequest
                 'required',
                 'string'
             ],
-            'file' => [
+            'files' => [
                 'required',
                 'array'
             ],
-            'file.*' => [
+            'files.*' => [
                 'required',
                 'file'
             ]
@@ -51,8 +51,8 @@ class StoreFileRequest extends FormRequest
     {
         return [
             'apiKey' => 'Api anahtarı',
-            'file' => 'Dosyalar',
-            'file.*' => 'Dosya'
+            'files' => 'Dosyalar',
+            'files.*' => 'Dosya'
         ];
     }
 
