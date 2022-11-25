@@ -10,12 +10,14 @@ class CreateFilesTable extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('slug');
+            $table
+                ->foreignId('domain_id')
+                ->constrained("domains");
             $table->string('original_name');
             $table->string('mime_type');
             $table->string('extension');
             $table->string('file_path');
-            $table->foreignId('domain_id')->constrained("domains");
-            $table->string('slug');
             $table->timestamps();
         });
     }
